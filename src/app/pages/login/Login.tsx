@@ -7,7 +7,7 @@ import { InputLogin } from './components/InputLogin';
 
 export const Login = () => {
 
-    const { nomeUsuario } = useUsuarioLogado()
+    const { nomeUsuario, logout } = useUsuarioLogado()
 
 
     const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -79,6 +79,10 @@ export const Login = () => {
 
                 <ButtonLogin type='button' onClick={entrar}>
                     Entrar 2
+                </ButtonLogin>
+
+                <ButtonLogin type='button' onClick={logout}>
+                    Logout
                 </ButtonLogin>
                 
             </form>
