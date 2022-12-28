@@ -11,16 +11,16 @@ interface IInputLoginProps {
 
 }
 
-export const InputLogin = React.forwardRef<HTMLInputElement, IInputLoginProps> ((props, ref) => {
+export const InputLogin = React.forwardRef<HTMLInputElement, IInputLoginProps> (({label, value, type, onChange, onPressEnter}, ref) => {
     return (
         <label>
-            <span>{props.label}</span>
+            <span>{label}</span>
             <input
                 ref={ref}
-                value={props.value}
-                type={props.type}
-                onChange={e => props.onChange(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' ? props.onPressEnter && props.onPressEnter() : undefined}
+                value={value}
+                type={type}
+                onChange={e => onChange(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' ? onPressEnter && onPressEnter() : undefined}
              />
         </label>
 

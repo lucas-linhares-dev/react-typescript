@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ButtonLogin } from './components/ButtonLogin';
 import { InputLogin } from './components/InputLogin';
 
 
@@ -69,7 +70,14 @@ export const Login = () => {
                 />
     
 
-                <button type='button' onClick={entrar} ref={inputSubmitRef}>Entrar</button>
+                <ButtonLogin type='button' onClick={entrar}>
+                    Entrar
+                </ButtonLogin>
+
+                <ButtonLogin type='button' onClick={entrar}>
+                    Entrar 2
+                </ButtonLogin>
+                
             </form>
 
             <Link to={"/pagina-inicial"}>Home</Link>
