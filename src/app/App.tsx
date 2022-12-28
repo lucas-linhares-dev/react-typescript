@@ -1,10 +1,13 @@
 import { RoutesApp } from "./routes";
+import { UsuarioLogadoProvider } from "./shared/contexts";
 
 
 export const App = () => {
   return (
     <div className="App">
-      <RoutesApp />
+      <UsuarioLogadoProvider>
+        <RoutesApp />
+      </UsuarioLogadoProvider>
     </div>
   );
 }

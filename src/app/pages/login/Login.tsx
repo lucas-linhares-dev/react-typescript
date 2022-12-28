@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UsuarioLogadoContext } from '../../shared/contexts';
 import { ButtonLogin } from './components/ButtonLogin';
 import { InputLogin } from './components/InputLogin';
 
 
 export const Login = () => {
 
+    const { nomeUsuario } = useContext(UsuarioLogadoContext)
+
+
     const inputPasswordRef = useRef<HTMLInputElement>(null);
-    const inputEmailRef = useRef<HTMLInputElement>(null);
-    const inputSubmitRef = useRef<HTMLButtonElement>(null);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -51,6 +53,7 @@ export const Login = () => {
     return(
         <div>
             <h1>Login</h1>
+            <h2>Olá, {nomeUsuario} </h2>
             <p>Quantidade de caracteres do email: {emailLength}</p>
             <form>
                 <InputLogin
