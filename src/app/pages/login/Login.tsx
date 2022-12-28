@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -24,6 +24,12 @@ export const Login = () => {
     }, [password])
 
 
+
+    const emailLength = useMemo(() => {
+        return email.length
+    }, [email])
+
+
     const entrar = () => {
         console.log(email)
         console.log(password)
@@ -32,7 +38,7 @@ export const Login = () => {
     return(
         <div>
             <h1>Login</h1>
-
+            <p>Quantidade de caracteres do email: {emailLength}</p>
             <form>
                 <label>
                     <span>Email</span>
