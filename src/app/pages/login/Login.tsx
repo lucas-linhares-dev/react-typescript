@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -30,10 +30,10 @@ export const Login = () => {
     }, [email])
 
 
-    const entrar = () => {
+    const entrar = useCallback(() => {
         console.log(email)
         console.log(password)
-    }
+    }, [email,password])
 
     return(
         <div>
