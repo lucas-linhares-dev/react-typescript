@@ -1,11 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 export const Login = () => {
 
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
+    const inputEmailRef = useRef<HTMLInputElement>(null);
+    const inputSubmitRef = useRef<HTMLButtonElement>(null);
+
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
 
 
 
@@ -33,6 +37,13 @@ export const Login = () => {
     const entrar = useCallback(() => {
         console.log(email)
         console.log(password)
+
+        if(inputPasswordRef.current !== null){
+            inputPasswordRef.current.value = ''
+        }
+
+        window.alert('Logou')
+        
     }, [email,password])
 
     return(
@@ -42,14 +53,14 @@ export const Login = () => {
             <form>
                 <label>
                     <span>Email</span>
-                    <input value = {email} onChange = {e => setEmail(e.target.value)} type="email" />
+                    <input value = {email} onChange = {e => setEmail(e.target.value)} type="email" ref={inputEmailRef} onKeyDown={e => e.key == 'Enter' ? inputPasswordRef.current?.focus() : undefined}/>
                 </label>
                 <label>
                     <span>Password</span>
-                    <input value ={password} onChange = {e => setPassword(e.target.value)} type="password" />
+                    <input value ={password} onChange = {e => setPassword(e.target.value)} type="password" ref={inputPasswordRef} onKeyDown={e => e.key == 'Enter' ? inputSubmitRef.current?.focus() : undefined } />
                 </label>
 
-                <button type='button' onClick={entrar}>Entrar</button>
+                <button type='button' onClick={entrar} ref={inputSubmitRef}>Entrar</button>
             </form>
 
             <Link to={"/pagina-inicial"}>Home</Link>
