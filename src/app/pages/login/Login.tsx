@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { InputLogin } from './components/InputLogin';
 
 
 export const Login = () => {
@@ -42,7 +43,7 @@ export const Login = () => {
             inputPasswordRef.current.value = ''
         }
 
-        window.alert('Logou')
+        window.alert(`Logou \n E-mail: ${email} \n Password: ${password}`)
         
     }, [email,password])
 
@@ -51,14 +52,21 @@ export const Login = () => {
             <h1>Login</h1>
             <p>Quantidade de caracteres do email: {emailLength}</p>
             <form>
-                <label>
-                    <span>Email</span>
-                    <input value = {email} onChange = {e => setEmail(e.target.value)} type="email" ref={inputEmailRef} onKeyDown={e => e.key == 'Enter' ? inputPasswordRef.current?.focus() : undefined}/>
-                </label>
-                <label>
-                    <span>Password</span>
-                    <input value ={password} onChange = {e => setPassword(e.target.value)} type="password" ref={inputPasswordRef} onKeyDown={e => e.key == 'Enter' ? inputSubmitRef.current?.focus() : undefined } />
-                </label>
+                <InputLogin
+                    label='E-mail'
+                    value={email}
+                    type='email'
+                    onChange={newValue => setEmail(newValue)}
+                    onPressEnter= {() => inputPasswordRef.current?.focus()}
+                />
+
+                <InputLogin
+                    label='Password'
+                    type='password'
+                    value={password}
+                    onChange={newValue => setPassword(newValue)}
+                />
+    
 
                 <button type='button' onClick={entrar} ref={inputSubmitRef}>Entrar</button>
             </form>
