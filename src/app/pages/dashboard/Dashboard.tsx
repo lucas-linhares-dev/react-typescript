@@ -5,7 +5,12 @@ import { useUsuarioLogado } from '../../shared/hooks';
 
 export const Dashboard = () => {
 
-    const [lista, setLista] = useState<string[]>([])
+    interface IListItem {
+        title: string;
+        selected: boolean;
+    }
+
+    const [lista, setLista] = useState<IListItem[]>([])
 
     const { nomeUsuario } = useUsuarioLogado()
 
@@ -20,7 +25,20 @@ export const Dashboard = () => {
             e.currentTarget.value = ''
 
             setLista((oldLista) => {
-                return [...oldLista, newValue]
+                if(lista.some((listItem) => listItem.title === newValue)){
+                    return oldLista
+                } 
+                else{
+                    return [
+
+                        ...oldLista,
+                        {
+                            title: newValue,
+                            selected: false
+                        }
+        
+                        ]
+                }
             })
         }
 
@@ -38,8 +56,8 @@ export const Dashboard = () => {
             <hr></hr>
             <input type="text" onKeyDown={addLista} />
             <ul>
-                {lista.map((value, index) => {
-                    return <li key={value}>{value}</li>
+                {lista.map((listitem) => {
+                    return <li key={listitem.title}>{listitem.title}</li>
                 })}
             </ul>
         </div>
